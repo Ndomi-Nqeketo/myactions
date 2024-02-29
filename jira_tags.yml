@@ -1,0 +1,22 @@
+name: Jira Tag Check
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Check for Jira tag in commit messages
+      run: |
+        git log --pretty=format:"%s" ${{ github.event.before }}..${{ github.sha }} | grep -E -q "\[SAN-[0-9]+\]"
+        if [ $? -eq 0 ]; then
+          echo "Jira tag found in commit messages."
+        else
+          echo "No Jira tag found in commit messages."
+          exit 1
+        fi
