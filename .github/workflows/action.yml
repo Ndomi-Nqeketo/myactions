@@ -1,6 +1,7 @@
 name: Jira Tag Check
 
-on: [push]
+on:
+  workflow_call:
 
 jobs:
   build:
