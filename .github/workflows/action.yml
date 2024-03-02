@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-# This is for the SAN Tag
+
     - name: Check for Jira tag in commit messages
       run: |
         git log --pretty=format:"%s" ${{ github.event.before }}..${{ github.sha }} | grep -E -q "\[SAN-[0-9]+\]"
