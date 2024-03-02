@@ -14,7 +14,7 @@ jobs:
 
     - name: Check for Jira tag in commit messages
       run: |
-        git log --pretty=format:"%s" ${{ github.event.before }}..${{ github.sha }} | grep -E -q "\[SAN-[0-9]+\]"
+        git log --pretty=format:"%s" ${{ github.event.before }}..${{ github.sha }} | grep -E -q "\[HAN-[0-9]+\]"
         if [ $? -eq 0 ]; then
           echo "Jira tag found in commit messages."
         else
